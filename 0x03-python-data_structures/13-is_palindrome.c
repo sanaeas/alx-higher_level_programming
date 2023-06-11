@@ -36,7 +36,8 @@ void listToArray(listint_t *head, int *array, int size)
 	int i = 0;
 	listint_t *temp = head;
 
-	while (temp != NULL && i < size) {
+	while (temp != NULL && i < size)
+	{
 		array[i] = temp->n;
 		temp = temp->next;
 		i++;
@@ -54,6 +55,8 @@ int is_palindrome(listint_t **head)
 {
 	int len, *arr, i = 0, mid;
 
+	if (!head || !(*head))
+		return (1);
 	len = calculate_len(*head);
 	arr = malloc(sizeof(int) * len);
 	if (!arr)
