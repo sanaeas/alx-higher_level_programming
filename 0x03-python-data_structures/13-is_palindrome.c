@@ -1,30 +1,6 @@
 #include "lists.h"
 
 /**
- * malloc_arr - allocate memory for array to store data
- *
- * @head: the head of the linked list
- *
- * Return: void
- */
-int *malloc_arr(listint_t *head)
-{
-	int *arr,  length;
-
-	length = 0;
-	while (head)
-	{
-		length++;
-		head = head->next;
-	}
-
-	arr = malloc(sizeof(int) * length);
-	if (!arr)
-		exit(1);
-	return (arr);
-}
-
-/**
  * is_palindrome - checks if a singly linked list is a palindrome
  *
  * @head: The head of the linked list
@@ -33,33 +9,32 @@ int *malloc_arr(listint_t *head)
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *temp;
-	int i, *arr;
+	listint_t *slow, *fast, *prev, *temp;
 
 	if (!head || !(*head))
 		return (1);
 
-	arr = malloc_arr(*head);
-	temp = *head;
-	i = 0;
-	while (temp)
+	slow = *head, fast = *head;
+	prev = NULL, temp = NULL;
+	while (fast != NULL && fast->next != NULL)
 	{
-		arr[i] = temp->n;
-		temp = temp->next;
-		i++;
+		fast = fast->next->next;
+		temp = slow;
+		slow = slow->next;
+		temp->next = prev;
+		prev = temp;
 	}
 
-	temp = *head, i -= 1;
-	while (i >= 0)
+	if (fast != NULL)
+		slow = slow->next;
+
+	while (prev != NULL && slow != NULL)
 	{
-		if (arr[i] != temp->n)
-		{
-			free(arr);
-			return(0);
-		}
-		temp = temp->next;
-		i--;
+		if (prev->n != slow->n)
+			return (0);
+		prev = prev->next;
+		slow = slow->next;
 	}
-	free(arr);
+
 	return (1);
 }
