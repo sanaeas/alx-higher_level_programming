@@ -1,25 +1,27 @@
 #include "lists.h"
 
 /**
- * listToArray - Converts a linked list into array of data
+ * malloc_arr - allocate memory for array to store data
  *
  * @head: the head of the linked list
- * @array: array to store data
- * @size: the length of the linked list
  *
  * Return: void
  */
-void listToArray(listint_t *head, int *array, int size)
+int *malloc_arr(listint_t *head)
 {
-	int i = 0;
-	listint_t *temp = head;
+	int *arr,  length;
 
-	while (temp != NULL && i < size)
+	length = 0;
+	while (head)
 	{
-		array[i] = temp->n;
-		temp = temp->next;
-		i++;
+		length++;
+		head = head->next;
 	}
+
+	arr = malloc(sizeof(int) * length);
+	if (!arr)
+		exit(1);
+	return (arr);
 }
 
 /**
@@ -31,30 +33,32 @@ void listToArray(listint_t *head, int *array, int size)
  */
 int is_palindrome(listint_t **head)
 {
-	int len = 0, *arr, i = 0, mid;
-	const listint_t *temp = *head;
+	listint_t *temp;
+	int i, *arr;
 
 	if (!head || !(*head))
 		return (1);
+
+	arr = malloc_arr(*head);
+	temp = *head;
+	i = 0;
 	while (temp)
 	{
-		len++;
+		arr[i] = temp->n;
 		temp = temp->next;
+		i++;
 	}
-	arr = malloc(sizeof(int) * len);
-	if (!arr)
-		return (0);
-	listToArray(*head, arr, len);
-	mid = len / 2;
-	len -= 1;
-	for (i = 0; i < mid; i++)
+
+	temp = *head, i -= 1;
+	while (i >= 0)
 	{
-		if (arr[i] != arr[len])
+		if (arr[i] != temp->n)
 		{
 			free(arr);
-			return (0);
+			return(0);
 		}
-		len--;
+		temp = temp->next;
+		i--;
 	}
 	free(arr);
 	return (1);
