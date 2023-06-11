@@ -1,28 +1,6 @@
 #include "lists.h"
 
 /**
- * calculate_len - Canlucates the length of the linked list
- *
- * @head: the head of the linked list
- *
- * Return: length
- */
-int calculate_len(const listint_t *head)
-{
-	const listint_t *temp;
-	int length;
-
-	temp = head;
-	length = 0;
-	while (temp)
-	{
-		length++;
-		temp = temp->next;
-	}
-	return (length);
-}
-
-/**
  * listToArray - Converts a linked list into array of data
  *
  * @head: the head of the linked list
@@ -53,11 +31,16 @@ void listToArray(listint_t *head, int *array, int size)
  */
 int is_palindrome(listint_t **head)
 {
-	int len, *arr, i = 0, mid;
+	int len = 0, *arr, i = 0, mid;
+	const listint_t *temp = *head;
 
 	if (!head || !(*head))
 		return (1);
-	len = calculate_len(*head);
+	while (temp)
+	{
+		len++;
+		temp = temp->next;
+	}
 	arr = malloc(sizeof(int) * len);
 	if (!arr)
 		return (0);
