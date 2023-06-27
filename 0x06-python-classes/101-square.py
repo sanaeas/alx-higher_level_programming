@@ -45,6 +45,11 @@ class Square:
         square_lines = []
         for _ in range(self.__position[1]):
             square_lines.append("\n")
-        for _ in range(self.__size):
-            square_lines.append(" " * self.__position[0] + "#" * self.__size)
-        return "\n".join(square_lines)
+        for i in range(self.__size):
+            for space in range(self.__position[0]):
+                square_lines.append(" ")
+            for j in range(self.__size):
+                square_lines.append("#")
+            if (i+1) != self.__size:
+                square_lines.append("\n")
+        return "".join(square_lines)
