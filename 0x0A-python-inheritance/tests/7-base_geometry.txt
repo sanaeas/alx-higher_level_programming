@@ -1,0 +1,30 @@
+Test 7-base_geometry module
+=====================
+First get 'BaseGeometry':
+-------------------
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+Test cases:
+-----------
+>>> bg = BaseGeometry()
+>>> bg.area()
+Traceback (most recent call last):
+Exception: area() is not implemented
+
+>>> bg.integer_validator("num", 11)
+
+>>> bg.integer_validator("name", "John")
+Traceback (most recent call last):
+TypeError: name must be an integer
+
+>>> bg.integer_validator("float", 9.59)
+Traceback (most recent call last):
+TypeError: name must be an integer
+
+>>> bg.integer_validator("zero", 0)
+Traceback (most recent call last):
+ValueError: zero must be greater than 0
+
+>>> bg.integer_validator("negative", -10)
+Traceback (most recent call last):
+ValueError: negative must be greater than 0
