@@ -34,3 +34,19 @@ ValueError: negative must be greater than 0
 >>> bg.integer_validator("arr", [3])
 Traceback (most recent call last):
 TypeError: arr must be an integer
+
+>>> bg.integer_validator("bool", False)
+Traceback (most recent call last):
+TypeError: bool must be an integer
+
+>>> bg.integer_validator()
+Traceback (most recent call last):
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+>>> bg.integer_validator("name")
+Traceback (most recent call last):
+TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+>>> bg.integer_validator("name", 12, 34)
+Traceback (most recent call last):
+TypeError: integer_validator() takes 3 positional arguments but 4 were given
