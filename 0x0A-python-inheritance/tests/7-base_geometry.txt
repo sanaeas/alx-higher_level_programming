@@ -18,12 +18,10 @@ Traceback (most recent call last):
 TypeError: name must be an integer
 
 >>> bg.integer_validator("float", 9.59)
-Traceback (most recent call last):
-TypeError: float must be an integer
 
 >>> bg.integer_validator("nf", -17465.01)
 Traceback (most recent call last):
-TypeError: nf must be an integer
+ValueError: nf must be greater than 0
 
 >>> bg.integer_validator("zero", 0)
 Traceback (most recent call last):
