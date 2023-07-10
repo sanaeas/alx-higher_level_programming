@@ -1,0 +1,32 @@
+Test 1-my_list module
+=====================
+First get 'MyList':
+-------------------
+>>> MyList = __import__('1-my_list').MyList
+
+Test cases:
+-----------
+>>> list1 = MyList()
+>>> list1.append(1)
+>>> list1.append(10)
+>>> list1.append(2)
+>>> list1.append(-5)
+>>> list1.append(5)
+>>> print(list1)
+[1, 10, 2, -5, 5]
+>>> list1.print_sorted()
+[-5, 1, 2, 5, 10]
+>>> print(list1)
+[1, 10, 2, -5, 5]
+
+------
+>>> list2 = MyList()
+>>> print(list2)
+[]
+>>> list2.print_sorted()
+[]
+>>> list2.append(0)
+>>> print(list2)
+[0]
+>>> list2.print_sorted()
+[0]
