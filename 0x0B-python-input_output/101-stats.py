@@ -6,9 +6,9 @@ from sys import stdin
 def print_statistics(file_size, status_codes):
     """prints statistics"""
     print("File size: {}".format(file_size))
-    for key, value in status_codes.items():
-        if value != 0:
-            print("{}: {}".format(key, value))
+    for key in status_codes.keys():
+        if status_codes[key] != 0:
+            print("{}: {}".format(key, status_codes[key]))
 
 
 def main():
