@@ -11,7 +11,7 @@ def print_statistics(file_size, status_codes):
             print("{}: {}".format(key, value))
 
 
-if __name__ == "__main__":
+def main():
     """Reads stdin and computes metrics"""
 
     status_codes = {'200': 0, '301': 0, '400': 0, '401': 0,
@@ -33,3 +33,6 @@ if __name__ == "__main__":
                 num_lines = 0
     except KeyboardInterrupt:
         print_statistics(file_size, status_codes)
+
+
+main()
