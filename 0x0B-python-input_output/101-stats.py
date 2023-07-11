@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """A script that reads stdin line by line and computes metrics"""
+from sys import stdin
 
 
 def print_statistics(file_size, status_codes):
@@ -12,7 +13,6 @@ def print_statistics(file_size, status_codes):
 
 if __name__ == "__main__":
     """Reads stdin and computes metrics"""
-    from sys import stdin
 
     status_codes = {'200': 0, '301': 0, '400': 0, '401': 0,
                     '403': 0, '404': 0, '405': 0, '500': 0}
@@ -25,12 +25,11 @@ if __name__ == "__main__":
             scode_fsize = splited_line[-1].split(" ")
 
             status_codes[scode_fsize[0]] += 1
-            file_size += int(scode_fsize[1])
+            file_size += int(scode_fsize[-1])
 
             num_lines += 1
             if num_lines >= 10:
                 print_statistics(file_size, status_codes)
                 num_lines = 0
-
     except KeyboardInterrupt:
         print_statistics(file_size, status_codes)
