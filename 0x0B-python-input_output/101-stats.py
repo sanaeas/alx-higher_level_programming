@@ -6,7 +6,7 @@ import sys
 def print_statistics(file_size, status_codes):
     """Print statistics"""
     print("File size: {}".format(file_size))
-    for key in status_code.keys():
+    for key in status_codes.keys():
         if status_codes[key] != 0:
             print("{}: {}".format(key, status_codes[key]))
 
@@ -18,12 +18,12 @@ def main():
     file_size = 0
     num_lines = 0
     try:
-        for line in stdin:
+        for line in sys.stdin:
             splitted_line = line.rstrip().split("HTTP/1.1\" ")
             scode_fsize = splitted_line[-1].split(" ")
 
-            status_code[scode_fsize[0]] += 1
-            size += int(scode_fsize[-1])
+            status_codes[scode_fsize[0]] += 1
+            file_size += int(scode_fsize[-1])
 
             num_lines += 1
             if num_lines >= 10:
