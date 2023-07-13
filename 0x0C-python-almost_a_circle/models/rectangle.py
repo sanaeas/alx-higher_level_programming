@@ -92,6 +92,21 @@ class Rectangle(Base):
                 print("#", end="")
             print()
 
+    def update(self, *args, **kwargs):
+        """Update the attributes of an instance"""
+        if args:
+            try:
+                self.id = args[0]
+                self.width = args[1]
+                self.height = args[2]
+                self.x = args[3]
+                self.y = args[4]
+            except IndexError:
+                pass
+        elif kwargs:
+            for key, val in kwargs.items():
+                setattr(self, key, val)
+
     def __str__(self):
         """String representation of a Rectangle instance"""
         return f"[Rectangle] ({self.id}) {self.x}/{self.y} - \
