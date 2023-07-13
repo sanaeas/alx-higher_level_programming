@@ -73,3 +73,26 @@ class Rectangle(Base):
             raise ValueError("y must be >= 0")
         else:
             self.__y = value
+
+    def area(self):
+        """Calculate the area of the ractangle"""
+        return self.width * self.height
+
+    def display(self):
+        """
+        Print in stdout the Rectangle instance
+        Using the character # and taking care of x and y
+        """
+        for _ in range(self.y):
+            print()
+        for _ in range(self.height):
+            for _ in range(self.x):
+                print(" ", end="")
+            for _ in range(self.width):
+                print("#", end="")
+            print()
+
+    def __str__(self):
+        """String representation of a Rectangle instance"""
+        return f"[Rectangle] ({self.id}) {self.x}/{self.y} - \
+                 {self.width}/{self.height}"
