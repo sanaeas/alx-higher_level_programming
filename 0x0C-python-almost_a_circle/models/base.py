@@ -62,3 +62,34 @@ class Base:
                 return instances
         except FileNotFoundError:
             return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        filename = cls.__name__ + ".csv"
+        with open(filename, "w", encoding="UTF-8", newline="") as f:
+            writer = csv.writer(f)
+            for obj in list_objs:
+                if cls.__name__ == "Rectangle":
+                    row = [obj.id, obj.width, obj.height, obj.x, obj.y]
+                elif cls.__name__ == "Square":
+                    row = [obj.id, obj.size, obj.x, obj.y]
+                writer.writerow(row)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        filename = cls.__name__ + ".csv"
+        instances = []
+        try:
+            with open(filename, "r", encoding="UTF-8", newline="") as f:
+                reader = csv.reader(f)
+                for row in reader:
+                    if cls.__name__ == "Rectangle":
+                        inst = cls(int(row[1]), int(row[2]), int(row[3]),
+                                   int(row[4]), int(row[0]))
+                    elif cls.__name__ == "Square":
+                        inst = cls(int(row[1]), int(row[2]), int(row[3]),
+                                   int(row[0]))
+                    instances.append(inst)
+        except FileNotFoundError:
+            return []
+        return instances
