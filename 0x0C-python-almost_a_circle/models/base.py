@@ -70,12 +70,15 @@ class Base:
         filename = cls.__name__ + ".csv"
         with open(filename, "w", encoding="UTF-8", newline="") as f:
             writer = csv.writer(f)
-            for obj in list_objs:
-                if cls.__name__ == "Rectangle":
-                    row = [obj.id, obj.width, obj.height, obj.x, obj.y]
-                elif cls.__name__ == "Square":
-                    row = [obj.id, obj.size, obj.x, obj.y]
-                writer.writerow(row)
+            if list_objs is None or list_objs == []:
+                f.write("[]")
+            else:
+                for obj in list_objs:
+                    if cls.__name__ == "Rectangle":
+                        row = [obj.id, obj.width, obj.height, obj.x, obj.y]
+                    elif cls.__name__ == "Square":
+                        row = [obj.id, obj.size, obj.x, obj.y]
+                    writer.writerow(row)
 
     @classmethod
     def load_from_file_csv(cls):
