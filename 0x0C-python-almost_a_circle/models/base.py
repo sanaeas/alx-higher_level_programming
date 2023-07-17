@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Define the Base class"""
 import json
+import csv
+import turtle
 
 
 class Base:
@@ -93,3 +95,44 @@ class Base:
         except FileNotFoundError:
             return []
         return instances
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Open a window and draws all the Rectangles and Squares"""
+        screen = turtle.Screen()
+        screen.setup(800, 600)
+        screen.bgcolor("black")
+
+        pen = turtle.Turtle()
+        pen.pensize(3)
+        pen.shape("turtle")
+
+        pen.color("red")
+        for rectangle in list_rectangles:
+            pen.penup()
+            pen.goto(rectangle.x, rectangle.y)
+            pen.pendown()
+            pen.forward(rectangle.width)
+            pen.left(90)
+            pen.forward(rectangle.height)
+            pen.left(90)
+            pen.forward(rectangle.width)
+            pen.left(90)
+            pen.forward(rectangle.height)
+            pen.left(90)
+
+        pen.color("blue")
+        for square in list_squares:
+            pen.penup()
+            pen.goto(square.x, square.y)
+            pen.pendown()
+            pen.forward(square.size)
+            pen.left(90)
+            pen.forward(square.size)
+            pen.left(90)
+            pen.forward(square.size)
+            pen.left(90)
+            pen.forward(square.size)
+            pen.left(90)
+
+        turtle.done()
